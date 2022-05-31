@@ -90,9 +90,9 @@ getEventData().then((events) => {
     };
   }
 
-  document.querySelector(
-    ".rack-header a"
-  ).innerText = `${store} - ${months[month]}`;
+  document.querySelector(".rack-header a").innerText = `${store} - ${
+    months[month - 1]
+  }`;
   const filteredEvents = events.filter(
     (event) => event.fullDate.getMonth() === month - 1 && event.store === store
   );
