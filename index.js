@@ -86,7 +86,7 @@ getEventData().then((events) => {
   }
   if (store == "Monroe") {
     document.querySelector(".rack-header").onclick = () => {
-      window.location. = `?store=Ruston&month=${month}`;
+      window.location.href = `?store=Ruston&month=${month}`;
     };
   }
 
