@@ -7,12 +7,12 @@
 
 @font-face {
   font-family: "GermaniaOne";
-  src: url("/GermaniaOne-Regular.ttf");
+  src: url("GermaniaOne-Regular.ttf");
 }
 
 @font-face {
   font-family: "Roboto";
-  src: url("/Roboto-Regular.ttf");
+  src: url("Roboto-Regular.ttf");
 }
 
 #rack-main {
