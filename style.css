@@ -1,0 +1,135 @@
+:root {
+  --width: 4in;
+  --height: 9in;
+  --card-height: 0.44in;
+  --text-color: #182334;
+}
+
+@font-face {
+  font-family: "GermaniaOne";
+  src: url("/GermaniaOne-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/Roboto-Regular.ttf");
+}
+
+#rack-main {
+  width: var(--width);
+  height: var(--height);
+  position: relative;
+  margin: 0 auto;
+  background-color: #0e351d;
+  background-size: contain;
+}
+
+.rack-header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 0.1in;
+  margin-bottom: 0.03in;
+}
+.rack-header a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 2.3em;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: "GermaniaOne";
+}
+.small-header a {
+  font-size: 1.55em;
+}
+
+.small-header {
+  padding-top: 0.02in;
+  margin-bottom: 0.1in;
+}
+
+.event-card {
+  position: relative;
+  margin: 0in 0.3in 0.08in 0.3in;
+  min-height: var(--card-height);
+  border-radius: 8px;
+  background-color: #fff;
+  z-index: 1;
+}
+.event-card div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.event-title {
+  margin-left: var(--card-height);
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: center;
+  width: calc(100% - var(--card-height));
+  color: var(--text-color);
+  font-family: "Roboto";
+}
+
+.event-description {
+  font-size: 0.3em;
+  text-align: left;
+  margin-top: 0.17in;
+  margin-left: var(--card-height);
+  padding-left: 0.1in;
+  width: calc(100% - var(--card-height) - 0.1in);
+  color: var(--text-color);
+  font-family: "Roboto";
+}
+.event-icon {
+  position: relative;
+  border-radius: 50%;
+  width: var(--card-height);
+  height: var(--card-height);
+  background-color: rgb(255, 255, 255);
+}
+
+.event-icon img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.event-icon div {
+  position: absolute;
+  font-family: "Roboto";
+  text-align: center;
+  color: var(--text-color);
+}
+
+.event-icon .weekday {
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -80%);
+  font-size: 0.3em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.event-icon .date {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1em;
+  font-weight: bold;
+}
+.event-icon .time {
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  font-size: 0.3em;
+  font-weight: bold;
+}
