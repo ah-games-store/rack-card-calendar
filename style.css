@@ -55,7 +55,7 @@
   position: relative;
   margin: 0in 0.3in 0.08in 0.3in;
   min-height: var(--card-height);
-  border-radius: 8px;
+  border-radius: var(--card-height);
   background-color: #fff;
   z-index: 1;
 }
@@ -67,19 +67,23 @@
 }
 
 .event-title {
+  position: absolute;
+  transform: translate(0, -20%);
   margin-left: var(--card-height);
+  padding: 0in 0.05in;
   font-size: 0.8em;
   font-weight: bold;
   text-align: center;
-  width: calc(100% - var(--card-height));
   color: var(--text-color);
   font-family: "Roboto";
+  background-color: #fff;
+  border-radius: 8px;
 }
 
 .event-description {
   font-size: 0.3em;
   text-align: left;
-  margin-top: 0.15in;
+  margin-top: 0.12in;
   margin-left: var(--card-height);
   padding-left: 0.05in;
   width: calc(100% - var(--card-height) - 0.1in);
