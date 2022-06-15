@@ -117,8 +117,8 @@ getEventData().then((events) => {
     const root = document
       .querySelector("#top-events #root-event")
       .cloneNode(true);
-    root.querySelector(".event-title").innerText = event.title;
-    root.querySelector(".event-description").innerText = event.description;
+    root.querySelector(".event-title").innerHTML = event.title;
+    root.querySelector(".event-description").innerHTML = event.description;
     root.querySelector(".event-icon .time").innerText = event.time;
     root.querySelector(".event-icon .date").innerText = event.weekday.slice(
       0,
