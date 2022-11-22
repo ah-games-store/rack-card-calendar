@@ -83,27 +83,14 @@ getEventData().then((events) => {
     document.querySelector(".rack-header").onclick = () => {
       window.location.href = `?store=Monroe&month=${month}`;
     };
-    var qrcode = new QRCode(document.getElementById("footer-qr"), {
-      text: "https://ruston.a-h.games/pages/events",
-      width: 512,
-      height: 512,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H,
-    });
+    document.getElementById("footer-qr").innerHTML = `<img src="assets/ruston_qr.png" alt="ruston_qr">`;
   }
   if (store == "Monroe") {
     document.querySelector(".rack-header").onclick = () => {
       window.location.href = `?store=Ruston&month=${month}`;
     };
-    var qrcode = new QRCode(document.getElementById("footer-qr"), {
-      text: "https://monroe.a-h.games/pages/events-1",
-      width: 128,
-      height: 128,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H,
-    });
+    //insert image and scale  as needed but keep square
+    document.getElementById("footer-qr").innerHTML = `<img src="assets/monroe_qr.png" alt="monroe_qr">`;
   }
 
   document.querySelector(".rack-header a").innerText = `${store} - ${
