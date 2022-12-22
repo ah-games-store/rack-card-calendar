@@ -1,7 +1,7 @@
 :root {
-  --width: 4in;
-  --height: 9in;
-  --card-height: 0.38in;
+  --width: 3in;
+  --height: 8in;
+  --card-height: 0.30in;
   --text-color: #182334;
 }
 
@@ -70,8 +70,8 @@
   position: absolute;
   transform: translate(0, -20%);
   margin-left: var(--card-height);
-  padding: 0in 0.05in;
-  font-size: 0.8em;
+  padding: 0in 0.04in;
+  font-size: 0.6em;
   font-weight: bold;
   text-align: center;
   color: var(--text-color);
@@ -81,9 +81,9 @@
 }
 
 .event-description {
-  font-size: 0.3em;
+  font-size: 0.05in;
   text-align: left;
-  margin-top: 0.12in;
+  margin-top: 0.08in;
   margin-left: var(--card-height);
   padding-left: 0.05in;
   width: calc(100% - var(--card-height) - 0.1in);
@@ -119,7 +119,7 @@
   top: 20%;
   left: 50%;
   transform: translate(-50%, -80%);
-  font-size: 0.045in;
+  font-size: 0.035in;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -127,14 +127,14 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 1em;
+  font-size: .8em;
   font-weight: bold;
 }
 .event-icon .time {
   top: 80%;
   left: 50%;
   transform: translate(-50%, -20%);
-  font-size: 0.3em;
+  font-size: 0.05in;
   font-weight: bold;
 }
 .footer {
