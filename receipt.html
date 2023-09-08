@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monroe Store Events</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        width: 80mm; /* typical receipt paper width */
+        margin: 0 auto;
+      }
+      h2 {
+        text-align: center;
+        border-bottom: 1px dashed #000;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+      }
+      .event {
+        margin-bottom: 10px;
+      }
+      .title,
+      .date,
+      .description {
+        margin: 2px 0;
+      }
+    </style>
+    <script>
+        const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+      async function getEventData() {
+  const data = await fetch(
+    "https://docs.google.com/spreadsheets/d/1EIBFkGyl6fIcILwLOopWvbnKt2QVI7sBZ-aBaFIOp8o/gviz/tq"
+  );
+  const jsonOptional = (await data.text()).match(
+    /google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/
+  );
+  if (jsonOptional === null && jsonOptional[1] === undefined) {
+    throw new Error("No data found");
+  }
+  const obj = JSON.parse(jsonOptional[1]);
+  const table = obj.table;
+  const header = table.cols.map(({ label }) => label);
+  const rows = table.rows.map(({ c }) => c.map((e) => (e ? e.v || "" : ""))); // Modified from const rows = table.rows.map(({c}) => c.map(({v}) => v));
+  const prelimData = [];
+  rows.forEach((row) => {
+    const data = {};
+    header.forEach((key, index) => {
+      data[key] = row[index];
+    });
+    prelimData.push(data);
+  });
+  console.log(prelimData);
+  const finalData = prelimData.map((event) => {
+    const eventDate = new Date(
+      ...event.Date.replace("Date(", "").replace(")", "").split(",")
+    );
+    return {
+      title: event.Title,
+      fullDate: eventDate,
+      date: eventDate.getDate(),
+      time: eventDate
+        .toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        })
+        .replace(" ", ""),
+      description: event.Description,
+      weekday: days[eventDate.getDay()],
+      image: event.Image,
+      store: event.Store,
+      weekly: event.Weekly,
+    };
+  });
+  console.log(finalData);
+  return finalData;
+}
+getEventData().then((events) => {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+  const month = params.month;
+  const store = params.store;
+  console.log(month, store);
+  const filteredEvents = events.filter(
+    (event) => event.fullDate.getMonth() === month - 1 && event.store === store
+  )
+  //remove anything not weekly before today
+    .filter(event=>event.weekly || event.fullDate > new Date());
+  console.log(filteredEvents);
+    /*<div class="event">
+  <div class="title"><strong>Wilds of Eldraine Open House</strong></div>
+  <div class="date">Date: 9/9/2023, 18:00</div>
+  <div class="description">
+    New Players Welcome! Get into Magic the Gathering with us. Free cards
+    and packs for attendees!
+  </div>
+</div>*/
+
+filteredEvents.forEach(event=>{
+    const eventDiv = document.createElement("div");
+    eventDiv.classList.add("event");
+    const titleDiv = document.createElement("div");
+    titleDiv.classList.add("title");
+    titleDiv.innerHTML = `<strong>${event.title}</strong>`;
+    const dateDiv = document.createElement("div");
+    dateDiv.classList.add("date");
+    const formattedDate = `${months[event.fullDate.getMonth()]} ${event.date}, ${event.fullDate.getFullYear()}`;
+    dateDiv.innerHTML = `Date: ${event.weekly ? event.weekday+'s' : `${formattedDate}`}, ${event.time}`;
+    const descriptionDiv = document.createElement("div");
+    descriptionDiv.classList.add("description");
+    descriptionDiv.innerHTML = event.description;
+    eventDiv.appendChild(titleDiv);
+    eventDiv.appendChild(dateDiv);
+    eventDiv.appendChild(descriptionDiv);
+    document.body.appendChild(eventDiv);
+})
+});
+    </script>
+  </head>
+  <body>
+    <h2>Monroe Store Events</h2>
+
+    
+
+    <!-- ... and so on for all the other events ... -->
+  </body>
+</html>
