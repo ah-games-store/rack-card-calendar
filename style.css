@@ -1,7 +1,7 @@
 :root {
-  --width: 4in;
-  --height: 12.3in;
-  --card-height: 0.38in;
+  --width: 8.5in;
+  --height: 11in;
+  --card-height: 0.6in;
   --text-color: #182334;
 }
 
@@ -37,7 +37,7 @@
   height: 100%;
   text-align: center;
   color: rgb(255, 255, 255);
-  font-size: 2.3em;
+  font-size: 2.9em;
   font-weight: bold;
   text-decoration: none;
   font-family: "GermaniaOne";
@@ -81,7 +81,7 @@
 }
 
 .event-description {
-  font-size: 0.3em;
+  font-size: 0.5em;
   text-align: left;
   margin-top: 0.12in;
   margin-left: var(--card-height);
@@ -160,4 +160,22 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0.1in;
+}
+
+.big-event-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 0.1in;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.left-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
